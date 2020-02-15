@@ -23,5 +23,9 @@ arithmetic[2]="$Operation2"
 arithmetic[3]="$Operation3"
 arithmetic[4]="$Operation4"
 
-# DISPLAY DICTIONARY
-echo "Arithmetic Operations in Dictionary: " ${arithmetic[@]}
+# DISPLAY DICTIONARY INTO ARRAY
+for (( index=0; index<$length; index++ ))
+do
+	resultArray[index]=${resultDictionary[result$(( index+1 ))]}
+done
+
