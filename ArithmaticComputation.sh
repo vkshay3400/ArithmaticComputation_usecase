@@ -9,4 +9,4 @@ read -p "Enter third number input: " thirdnumber
 
 # ARITHMETIC OPERATION
 Operation1=$(( $firstnumber + $secondnumber * $thirdnumber ))
-
+Operation2=$(( $firstnumber * $secondnumber + $thirdnumber  ))
