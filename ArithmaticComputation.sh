@@ -46,3 +46,19 @@ do
 	done
 done
 echo "Descending values are " ${resultArray[@]}
+
+# SORT IN ASCENDING ORDER
+for (( index1=0; index1<$length; index1++ ))
+do
+	for (( index2=0; index2<$length-1; index2++ ))
+	do
+		if (($(echo "${resultArray[index2]} > ${resultArray[index2+1]}" | bc -l)))
+		then
+			temporary=${resultArray[index2]}
+			resultArray[index2]=${resultArray[index2+1]}
+			resultArray[index2+1]=$temporary
+		fi
+	done
+done
+echo "Ascending values are " ${resultArray[@]}
+
