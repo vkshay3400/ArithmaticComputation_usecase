@@ -14,7 +14,7 @@ Operation3=`echo "scale=2; $thirdnumber + $firstnumber / $secondnumber" | bc`
 Operation4=`echo "scale=2; $firstnumber % $secondnumber + $thirdnumber" | bc`
 
 # DISPLAY OPERATION
-echo "Operations Output: " $Operation1 $Operation2 $Operation3 $Operation4 
+echo "Operations Output: " $Operation1 $Operation2 $Operation3 $Operation4
 
 # STORE IN DICTIONARY
 declare -A arithmetic
@@ -24,8 +24,10 @@ arithmetic[3]="$Operation3"
 arithmetic[4]="$Operation4"
 
 # DISPLAY DICTIONARY INTO ARRAY
+length=${#arithmetic[@]}
+echo $length
 for (( index=0; index<$length; index++ ))
 do
-	resultArray[index]=${resultDictionary[result$(( index+1 ))]}
+	resultArray[index]=${arithmetic[$(( index+1 ))]}
 done
-
+echo ${resultArray[@]}
