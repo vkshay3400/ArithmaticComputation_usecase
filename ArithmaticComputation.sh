@@ -33,15 +33,15 @@ done
 echo ${resultArray[@]}
 
 # SORT IN DESCENDING ORDER
-for (( i=0; i<$length; i++ ))
+for (( index1=0; index1<$length; index1++ ))
 do
-	for (( j=0; j<$length-1; j++ ))
+	for (( index2=0; index2<$length-1; index2++ ))
 	do
-		if (($(echo "${resultArray[j]} < ${resultArray[j+1]}" | bc -l)))
+		if (($(echo "${resultArray[index2]} < ${resultArray[index2+1]}" | bc -l)))
 		then
-			temporary=${resultArray[j]}
-			resultArray[j]=${resultArray[j+1]}
-			resultArray[j+1]=$temporary
+			temporary=${resultArray[index2]}
+			resultArray[index2]=${resultArray[index2+1]}
+			resultArray[index2+1]=$temporary
 		fi
 	done
 done
