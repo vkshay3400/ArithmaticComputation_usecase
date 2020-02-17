@@ -8,8 +8,8 @@ read -p "Enter second number input: " secondnumber
 read -p "Enter third number input: " thirdnumber
 
 # ARITHMETIC OPERATION
-Operation1=$(( $firstnumber + $secondnumber * $thirdnumber ))
-Operation2=$(( $firstnumber * $secondnumber + $thirdnumber ))
+Operation1=`echo "scale=2; $firstnumber + $secondnumber * $thirdnumber" | bc`
+Operation2=`echo "scale=2; $firstnumber * $secondnumber + $thirdnumber" | bc`
 Operation3=`echo "scale=2; $thirdnumber + $firstnumber / $secondnumber" | bc`
 Operation4=`echo "scale=2; $firstnumber % $secondnumber + $thirdnumber" | bc`
 
@@ -28,6 +28,21 @@ length=${#arithmetic[@]}
 echo $length
 for (( index=0; index<$length; index++ ))
 do
-	resultArray[index]=${arithmetic[$(( index+1 ))]}
+	resultArray[index]=${arithmetic[$((index+1))]}
 done
 echo ${resultArray[@]}
+
+# SORT IN DESCENDING ORDER
+for (( i=0; i<$length; i++ ))
+do
+	for (( j=0; j<$length-1; j++ ))
+	do
+		if (($(echo "${resultArray[j]} < ${resultArray[j+1]}" | bc -l)))
+		then
+			temporary=${resultArray[j]}
+			resultArray[j]=${resultArray[j+1]}
+			resultArray[j+1]=$temporary
+		fi
+	done
+done
+echo "Descending values are " ${resultArray[@]}
